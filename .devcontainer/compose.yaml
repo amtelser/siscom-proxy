@@ -1,0 +1,10 @@
+name: "siscom_proxy"
+
+services:
+  siscom-proxy:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity

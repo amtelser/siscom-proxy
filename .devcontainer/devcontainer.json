@@ -1,0 +1,43 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/rust
+{
+  "name": "SISCOM Proxy",
+  "dockerComposeFile": "compose.yaml",
+  "service": "siscom-proxy",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  "containerEnv": {
+    "UDP_PORT": "5013",
+    "TCP_PORT": "4000",
+    "TCP_HOST": "localhost"
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [],
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Gruntfuggly.todo-tree",
+        "github.vscode-github-actions",
+        "nhoizey.gremlins",
+        "pomber.git-file-history",
+        "rust-lang.rust-analyzer",
+        "sleistner.vscode-fileutils",
+        "sysoev.vscode-open-in-github",
+        "tamasfe.even-better-toml",
+        "vadimcn.vscode-lldb"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[rust]": {
+          "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        }
+      }
+    }
+  },
+  // Uncomment to connect as root instead. More info: https://containers.dev/implementors/json_reference/#remoteUser.
+  // "remoteUser": "root",
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": ""
+}
