@@ -1,0 +1,35 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  RUST_BACKTRACE: 1
+  CARGO_TERM_COLOR: always
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: [self-hosted, core]
+    container: rust:1
+
+    steps:
+    - name: Install lld linker
+      run: |
+        apt-get update && export DEBIAN_FRONTEND=noninteractive \
+          && apt-get -y install clang lld
+
+    - uses: actions/checkout@v4
+
+    - name: Run tests
+      run: cargo test
